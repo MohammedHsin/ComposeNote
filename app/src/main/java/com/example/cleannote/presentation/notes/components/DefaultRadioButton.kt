@@ -1,5 +1,6 @@
 package com.example.cleannote.presentation.notes.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -25,7 +26,8 @@ fun DefaultRadioButton(
 
     Row(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceAround
     ) {
 
         RadioButton(selected = selected, onClick = onSelect, colors = RadioButtonDefaults.colors(
@@ -33,9 +35,17 @@ fun DefaultRadioButton(
             unselectedColor = MaterialTheme.colorScheme.onBackground
         ))
         
-        Spacer(modifier = Modifier.width(8.dp))
+//        Spacer(modifier = Modifier.width(3.dp))
 
-        Text(text = text , style = MaterialTheme.typography.bodySmall)
+        Text(text = text , style = MaterialTheme.typography.bodyLarge)
     }
 }
+
+@Preview
+@Composable
+fun Prev(){
+    DefaultRadioButton(text = "Title", selected = true, onSelect = { /*TODO*/ })
+}
+
+
 

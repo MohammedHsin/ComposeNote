@@ -52,7 +52,7 @@ fun OrderSection(
         }
         
         
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(14.dp))
 
         Row(Modifier.fillMaxWidth()) {
 
@@ -62,7 +62,7 @@ fun OrderSection(
             )
 
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(1.dp))
 
             DefaultRadioButton(text = "Descending",
                 selected = noteOrder.orderType is OrderType.Descending,
