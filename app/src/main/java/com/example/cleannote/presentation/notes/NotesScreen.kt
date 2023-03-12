@@ -52,6 +52,7 @@ import com.example.cleannote.domain.model.Note
 import com.example.cleannote.domain.use_case.NoteUseCases
 import com.example.cleannote.domain.util.NoteOrder
 import com.example.cleannote.domain.util.OrderType
+import com.example.cleannote.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,7 +69,9 @@ fun NotesScree(
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackBarHostSate)},
         floatingActionButton = {
-            FloatingActionButton(onClick = {},
+            FloatingActionButton(onClick = {
+                                           navController.navigate(Screen.AddEditNoteScreen.route)
+            },
             containerColor = MaterialTheme.colorScheme.primary) {
                 Icon(imageVector = Icons.Default.Add, contentDescription ="Add Note")
             }
@@ -118,7 +121,10 @@ fun NotesScree(
                         note = it,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { },
+                            .clickable {
+                                       navController.navigate(Screen.AddEditNoteScreen.route +
+                            "?noteId=${it.id}&noteColor=${it.color}")
+                            },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.Delete(it))
                             scope.launch {
