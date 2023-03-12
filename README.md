@@ -1,5 +1,5 @@
 
-# Noty
+# Notty
 
 A lightweight note-taking Android app
 
