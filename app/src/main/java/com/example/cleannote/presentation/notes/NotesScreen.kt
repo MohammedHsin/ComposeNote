@@ -46,12 +46,15 @@ import com.example.cleannote.presentation.notes.components.OrderSection
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.cleannote.domain.use_case.NoteUseCases
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotesScree(
-    navController: NavController,
+//    navController: NavController,
     viewModel: NotesViewModel = hiltViewModel()
 ){
 
@@ -136,4 +139,10 @@ fun NotesScree(
 
         val ignore = it
     }
+}
+
+@Preview
+@Composable
+fun Pre(){
+    NotesScree()
 }
