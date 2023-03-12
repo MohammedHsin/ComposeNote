@@ -48,13 +48,16 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.cleannote.domain.model.Note
 import com.example.cleannote.domain.use_case.NoteUseCases
+import com.example.cleannote.domain.util.NoteOrder
+import com.example.cleannote.domain.util.OrderType
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotesScree(
-//    navController: NavController,
+    navController: NavController,
     viewModel: NotesViewModel = hiltViewModel()
 ){
 
@@ -79,12 +82,12 @@ fun NotesScree(
         ) {
 
             Row(
-                Modifier.fillMaxSize(),
+                Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Text(text = "Your Notes" , style = MaterialTheme.typography.bodyMedium)
+                Text(text = "Your Notes" , style = MaterialTheme.typography.headlineMedium)
 
                 IconButton(onClick = {
                                         viewModel.onEvent(NotesEvent.ToggleOrderSection)
@@ -141,8 +144,100 @@ fun NotesScree(
     }
 }
 
+
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MockNoteScreen(){
+//    val state = viewModel.state.value
+    val scope = rememberCoroutineScope()
+    val snackBarHostSate = remember{SnackbarHostState()}
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackBarHostSate)},
+        floatingActionButton = {
+            FloatingActionButton(onClick = {},
+            containerColor = MaterialTheme.colorScheme.primary) {
+                Icon(imageVector = Icons.Default.Add, contentDescription ="Add Note")
+            }
+        }
+    ) {
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Text(text = "Your Notes" , style = MaterialTheme.typography.headlineMedium)
+
+                IconButton(onClick = {
+//                                        viewModel.onEvent(NotesEvent.ToggleOrderSection)
+                }) {
+                   Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort Notes")
+                }
+            }
+
+            AnimatedVisibility(
+                visible = true,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically()
+            ) {
+
+                OrderSection(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp),
+                noteOrder = NoteOrder.Title(OrderType.Descending) ,
+                    onOrderChange = {}
+                )
+            }
+
+            Spacer(Modifier.height(16.dp))
+
+            val notes = listOf(Note("s", "ddd" , 1 , -1) ,
+                Note("s", "ddd" , 1 , -1))
+            LazyColumn(Modifier.fillMaxSize()){
+                items(notes){
+                    NoteItem(
+                        note = it,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { },
+                        onDeleteClick = {
+//                            viewModel.onEvent(NotesEvent.Delete(it))
+                            scope.launch {
+                                val result = snackBarHostSate.showSnackbar(
+                                    message = "Note Deleted",
+                                    actionLabel = "Undo"
+                                )
+                                if (result == SnackbarResult.ActionPerformed){
+//                                    viewModel.onEvent(NotesEvent.RestoreNote)
+                                }
+                            }
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                }
+            }
+
+        }
+
+        val ignore = it
+    }
+}
+
+
 @Preview
 @Composable
 fun Pre(){
-    NotesScree()
+    MockNoteScreen()
 }

@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = Screen.NotesScreen.route){
                         composable(route = Screen.NotesScreen.route){
                             NotesScree(
-//                                navController = navController
+                                navController = navController
                             )
                         }
 
