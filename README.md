@@ -39,3 +39,4 @@ kotlin , Java , Architecture Patterns (MVVM , MVP , MVC) , Design Patterns , Sys
 
 ## Screenshots
 
+<img src="/tree/main/app/src/main/res/final.png" alt="Alt text" title="Optional title">
