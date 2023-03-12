@@ -36,3 +36,6 @@ I'm an Android app developer
 
 ## 🛠 Skills
 kotlin , Java , Architecture Patterns (MVVM , MVP , MVC) , Design Patterns , System Design , RESTful APIs , Retrofit , coroutine , SQL Database (Room) , Google Best Practices , JSON , XML , Testing , Git/GitHut
+
+## Screenshots
+
