@@ -1,5 +1,6 @@
 package com.example.cleannote.presentation.note_edit
 
+import android.annotation.SuppressLint
 import android.widget.Space
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
@@ -38,6 +39,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,6 +50,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
+@SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddEditNoteScree(
@@ -153,7 +156,7 @@ fun AddEditNoteScree(
                         viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
                     } , isHintVisible = titleState.isHintVisible,
                 singleLine = true,
-                textStyle = MaterialTheme.typography.bodyMedium)
+                textStyle = MaterialTheme.typography.headlineMedium)
 
 
                 Spacer(Modifier.height(16.dp))
@@ -165,7 +168,7 @@ fun AddEditNoteScree(
                     onFocusChange = {
                         viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
                     } , isHintVisible = contentState.isHintVisible,
-                    textStyle = MaterialTheme.typography.bodySmall, modifier = Modifier.fillMaxSize())
+                    textStyle = MaterialTheme.typography.bodyLarge, modifier = Modifier.fillMaxSize())
 
             }
         }
@@ -298,7 +301,7 @@ fun MockAddEditNoteScree(
 //                        viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
                     },
                     isHintVisible = true,
-                    textStyle = MaterialTheme.typography.bodySmall,
+                    textStyle = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.fillMaxSize())
 
             }
